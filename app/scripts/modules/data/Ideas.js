@@ -139,13 +139,23 @@ angular.module('ExternalDataServices')
 			idea.setMonetaryCommitment(0);
 			idea.setEducatorVotes(0);
 			idea.setDeveloperVotes(0);
-
-			// use the extended Parse SDK to perform a save and return the promised object back into the Angular world
-			return idea.saveParse().then(function(data){
-				_this.add(data);
-				if (typeof(complete) === "function") {
-					complete(data);
-				}
+			if (Parse.User.current()) {
+			    Parse.User.current().fetch().then(function (user) {
+			        idea.setOwner(user);
+			        // use the extended Parse SDK to perform a save and return the promised object back into the Angular world
+			        return idea.saveParse().then(function (data) {
+			            _this.add(data);
+			            if (typeof (complete) === "function") {
+			                complete(data);
+			            }
+			        })
+			    });
+			}
+			return idea.saveParse().then(function (data) {
+			    _this.add(data);
+			    if (typeof (complete) === "function") {
+			        complete(data);
+			    }
 			})
 	 	},
 	 	removeIdea:function(idea) {

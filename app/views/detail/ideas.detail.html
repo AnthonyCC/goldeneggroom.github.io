@@ -15,9 +15,9 @@
 			</div>
 			<h2>{{detailCtrl.current.getSummary()}}</h2>
 <!-- detailCtrl.current.getOwner().getFirstName() -->
-			<h3 class="creator pull-left"><span class="small-right-margin">Creator </span>{{
-			"Stephen Bluestone"
-			}}</h3>
+			<h3 class="creator pull-left"><span class="small-right-margin">Creator </span><span class="creator-name">{{
+			(detailCtrl.current.getOwner().get('firstName')? detailCtrl.current.getOwner().get('firstName') : "Stephan") + " " + ((detailCtrl.current.getOwner().get('lastName')? detailCtrl.current.getOwner().get('lastName') : "BLUESTONE"))
+			}}</span></h3>
 			<h3 class="creator pull-left small-left-margin"><span class="small-right-margin">Target</span>{{detailCtrl.current.getTarget()}}</h3>
 		</div>
 		<div class="span3">

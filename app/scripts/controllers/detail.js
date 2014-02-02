@@ -22,6 +22,11 @@ angular.module('demo')
   }
 
   if ($scope.detailCtrl.current) {
+      if ($scope.detailCtrl.current.get('owner')) {
+          $scope.detailCtrl.current.get('owner').fetch().then(function (user) {
+              $scope.$apply();
+          });
+      }
     $scope.detailCtrl.editCurrent.title = $scope.detailCtrl.current.getTitle()
     $scope.detailCtrl.editCurrent.summary = $scope.detailCtrl.current.getSummary()
     $scope.detailCtrl.editCurrent.tout = $scope.detailCtrl.current.getTout()

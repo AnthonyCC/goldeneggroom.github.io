@@ -60,7 +60,8 @@ angular.module('app', ['ui.router.compat' /* this is for ui-router */, 'ngAnimat
 	})
 
 	$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
-		$rootScope.unsetLoading();
+	    $rootScope.unsetLoading();
+	    window.scrollTo(0, 0);
 		console.log('state change complete')
 		console.log($rootScope.isViewLoading);
 	});
